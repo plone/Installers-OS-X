@@ -23,8 +23,8 @@ PACKAGE_PATH = sys.argv[1]
 PLONE_HOME = sys.argv[2]
 
 # Find Base Resources directory
-BASE_RESOURCES = os.path.normpath(
-    os.path.join(PACKAGE_PATH, '../pythonZopePloneBase.pkg/Contents/Resources')
+BASE_RESOURCES = os.path.normpath( 
+    os.path.join(PACKAGE_PATH, '../pythonZopePloneBase.pkg/Contents/Resources')  
   )
 # add it to the path
 sys.path.insert(1, BASE_RESOURCES)
@@ -43,14 +43,14 @@ def die(message):
 # Figure out whether we're installing a stand-alone
 # or cluster instance. Remove installer stub.
 if PACKAGE_PATH.endswith('standaloneZope.pkg') or PACKAGE_PATH.endswith('standaloneZope-1.pkg'):
-    installMode = 'standalone'
-    instanceName = STANDALONE_NAME
-    os.remove(os.path.join(PLONE_HOME, 'Standalone Zope'))
+     installMode = 'standalone'
+     instanceName = STANDALONE_NAME
+     os.remove(os.path.join(PLONE_HOME,'Standalone Zope'))
 elif PACKAGE_PATH.endswith('zeoCluster.pkg') or PACKAGE_PATH.endswith('zeoCluster-1.pkg'):
-    installMode = 'zeo'
-    instanceName = ZEO_NAME
-    os.remove(os.path.join(PLONE_HOME, 'ZEO Cluster'))
-os.remove(os.path.join(PLONE_HOME, "Python - Zope - Plone Base"))
+     installMode = 'zeo'
+     instanceName = ZEO_NAME
+     os.remove(os.path.join(PLONE_HOME,'ZEO Cluster'))
+os.remove(os.path.join(PLONE_HOME,"Python - Zope - Plone Base"))
 
 
 # diagnostics to /var/log/install.log
@@ -63,9 +63,8 @@ print "BASE_RESOURCES: %s" % BASE_RESOURCES
 sys.path.insert(1, BASE_RESOURCES)
 password = askPassword.getPassword()
 
-
 class InstallApp(guageApp.GuageApp):
-
+    
     def doWork(self):
 
         self.setGuage(5, 'Unpacking binaries ...')
@@ -77,12 +76,14 @@ class InstallApp(guageApp.GuageApp):
             die('Unable to unpack binaries.')
             self.Close()
 
+
         # # Make distracting directories invisible
         # # in Finder; they'll still be visible
         # # in the terminal.
         # os.system("SetFile -a V buildout-cache")
         # os.system("SetFile -a V Python*")
         # os.system("SetFile -a V Zope*")
+
 
         self.setGuage(25, 'Compiling Python modules ...')
         # binaries are distributed without .pyc files.
@@ -93,6 +94,7 @@ class InstallApp(guageApp.GuageApp):
                  MY_PYTHON.lower().replace('-', ''), os.path.join(PLONE_HOME, d))
             print command
             os.system(command)
+
 
         self.setGuage(50, 'Fixing script paths ...')
         # Walk the directory tree looking for executable files
@@ -121,12 +123,13 @@ class InstallApp(guageApp.GuageApp):
                     infile.close()
         print "%d script shbangs fixed." % count
 
+
         # ownership fixup, if necessary
         if haveRoot:
             egid = os.getegid()
             print "Root installed detected; fixing base component ownership."
-            status = os.system('chown root:admin "%s"' % PLONE_HOME)
-            if status:
+            status = os.system( 'chown root:admin "%s"' % PLONE_HOME )
+            if status: 
                 die('Unable to change file ownership.')
                 self.Close()
             status = os.system(
@@ -140,9 +143,10 @@ class InstallApp(guageApp.GuageApp):
                 die('Unable to change file ownership.')
                 self.Close()
 
+
         self.setGuage(50, 'Running Unified Installer ...')
         # change to unified installer's directory and run it
-        wdir = os.path.join(PLONE_HOME, 'UnifiedInstaller')
+        wdir = os.path.join(BASE_RESOURCES, 'UnifiedInstaller')
         print "Changing to %s" % wdir
         os.chdir(wdir)
         print "Running install.sh from %s" % os.getcwd()
@@ -153,9 +157,9 @@ class InstallApp(guageApp.GuageApp):
             --log=%s \
             --password=%s \
             --instance="%s" """ % \
-          (installMode,
-           PLONE_HOME,
-           '/tmp/install.log',
+          (installMode, 
+           PLONE_HOME, 
+           '/tmp/install.log', 
            pipes.quote(password),
            instanceName)
         print command
@@ -164,26 +168,28 @@ class InstallApp(guageApp.GuageApp):
             die('Unified Installer Failed.')
             self.Close()
 
+
         # change to instance directory
         if installMode == 'standalone':
             os.chdir(os.path.join(PLONE_HOME, STANDALONE_NAME))
         else:
             os.chdir(os.path.join(PLONE_HOME, ZEO_NAME))
 
-        # # adminPassword.txt is a lot less useful
-        # # in the OS X installer.
-        # os.unlink('adminPassword.txt')
-
-        # # Set a Plone folder icon on instance folder.
-        # # First, decode our icon file from macbinary
-        # # into current directory.
-        # command = 'cat "%s/plonefoldericons.bin" | macbinary decode --stdin' % BASE_RESOURCES
-        # print command
-        # os.system(command)
-        # # mark the folder as having a custom icon
-        # command = "SetFile -a C ."
-        # print command
-        # os.system(command)
+        # adminPassword.txt is a lot less useful
+        # in the OS X installer.
+        os.unlink('adminPassword.txt')
+        
+        # Set a Plone folder icon on instance folder.
+        # First, decode our icon file from macbinary
+        # into current directory.
+        command = 'cat "%s/plonefoldericons.bin" | macbinary decode --stdin' % BASE_RESOURCES
+        print command
+        os.system(command)
+        # mark the folder as having a custom icon
+        command = "SetFile -a C ."
+        print command
+        os.system(command)
+    
 
         self.Close()
 

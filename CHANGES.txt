@@ -1,33 +1,14 @@
-4.1.2
+4.0.8
 
- - Adapt to Plone 4.1.2
+- Adapt to Plone 4.0.8
 
- - Don't use wx if installing under Lion
+4.0.7
 
- - Put a copy of the Unified Installer inside the install
+- Adapt to Plone 4.0.7
 
- - Require "home" install, since Lion otherwise will force auth
-   and install as root
+4.0.5
 
-4.1
-
- - Adapt to 4.1
-
-4.1rc3
-
- - Adapt to 4.1rc3
-
-4.1rc2
-
- - Adapt to 4.1rc2
- 
- - Include statically linked lxml egg
-
-4.1b2
- - Adapt to Plone 4.1b2
-
-4.1b1
- - Adapt to Plone 4.1b1
+- Adapt to Plone 4.0.5
 
 4.0.4
 

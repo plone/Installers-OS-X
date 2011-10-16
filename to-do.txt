@@ -1,0 +1,4 @@
+- Make it possible to run this with an instance in place to upgrade existing Zope/Python.
+
+- We need a progress meter for the big install script. It takes too long to give
+no feedback.

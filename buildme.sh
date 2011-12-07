@@ -13,10 +13,10 @@ VERSION=4.1.3
 # override if you want to create the output folder somewhere else
 TARGET_DIR=Plone-${VERSION}
 
-# if [ -e /opt/local ]; then
-#     echo "Please temporarily move /opt/local so that we don't link against MacPorts libraries."
-#     exit 1
-# fi
+if [ -e /opt/local ]; then
+    echo "Please temporarily move /opt/local so that we don't link against MacPorts libraries."
+    exit 1
+fi
 
 rm -rf Plone-${VERSION}-UnifiedInstaller
 echo "Unpacking Unified Installer"
@@ -42,6 +42,16 @@ if [ $? -gt 0 ]; then
     exit 1
 fi
 
+./install.sh standalone --libjpeg=yes \
+  --readline=yes --password=admin \
+  --target=../work-build \
+  $EXFLAGS
+
+if [ $? -gt 0 ]; then
+    echo 'Unified Installer build failed; check install.log.'
+    exit 1
+fi
+
 # move the unified installer, minus packages, into the work build
 rm install.log
 rm -r packages/*
@@ -49,22 +59,25 @@ cd ..
 mv Plone-${VERSION}-UnifiedInstaller work-build/UnifiedInstaller
 
 cd work-build
-
-# force lxml static build
 cd zeocluster
-bin/buildout -c lxml_static.cfg
-if [ $? -gt 0 ]; then
-    echo 'Static lxml build failed; check install.log.'
-    exit 1
-fi
+
+# make sure dev packages are built
+bin/buildout -c develop.cfg
+
+# # force lxml static build
+# rm .installed.cfg
+# bin/buildout -c lxml_static.cfg
+# if [ $? -gt 0 ]; then
+#     echo 'Static lxml build failed; check install.log.'
+#     exit 1
+# fi
 cd ..
 
 echo "Moving results into PackageMaker resource directories"
-# don't copy the instance
-rm -r zeocluster
+# don't copy the instances
+rm -r zeocluster zinstance
 # don't include the dist files
-rm -r buildout-cache/downloads/dist/*
-rm -r buildout-cache/downloads/cmmi
+rm -r buildout-cache/downloads/dist/* buildout-cache/downloads/cmmi
 # no need to transport .pyc files; we'll rebuild them on install
 find . -name "*.py[co]" -exec rm {} \;
 tar jcf ../baseResources/binaries.tar.bz2 *

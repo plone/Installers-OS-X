@@ -28,7 +28,26 @@ if [ -x /Developer/usr/bin/packagemaker ]; then
   cp generalResources/ReadMe.html $TARGET_DIR
   cp -r baseResources/UnifiedInstaller/Licenses $TARGET_DIR
 
-  svn export http://svn.plone.org/svn/plone/Plone/tags/${VERSION}/docs $TARGET_DIR/Plone-docs
+  echo 'Clonning Plone'
+  if [ ! -d baseResources/Plone ]
+  then
+    cd baseResources
+    git clone git://github.com/plone/Plone.git
+    cd ..
+  fi
+  
+  echo 'Moving to right tag'
+  cd baseResources/Plone
+  git checkout ${VERSION}
+
+  cd ../../
+
+  echo 'Prepare docs'
+  if [ ! -d $TARGET_DIR/Plone-docs ]
+  then  
+    mkdir -p $TARGET_DIR/Plone-docs
+  fi
+  cp -R baseResources/Plone/docs/* $TARGET_DIR/Plone-docs/
 
   echo "Attaching installer icon"
   # mount disk image with folder with icon resource

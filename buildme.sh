@@ -8,7 +8,7 @@
 
 # specify version below; it should match the name of
 # the Unified Installer.
-VERSION=4.1.5
+VERSION=4.2rc1
 
 # override if you want to create the output folder somewhere else
 TARGET_DIR=Plone-${VERSION}
@@ -86,7 +86,7 @@ cd ..
 
 # build an installer package and dmg-ready directory
 # if possible.
-if [ -x /Developer/usr/bin/packagemaker ]; then    
+if [ -x /Developer/usr/bin/packagemaker ]; then
 
     echo "Preparing package"
 
@@ -102,7 +102,7 @@ if [ -x /Developer/usr/bin/packagemaker ]; then
     cp generalResources/ReadMe.html $TARGET_DIR
     cp -r work-build/UnifiedInstaller/Licenses $TARGET_DIR
     cp -r work-build/UnifiedInstaller/Plone-docs $TARGET_DIR
-    
+
 
     echo "Attaching installer icon"
     # mount disk image with folder with icon resource

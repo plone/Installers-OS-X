@@ -6,13 +6,13 @@
 
 # specify version below; it should match the name of
 # the Unified Installer.
-VERSION=4.1.5
+VERSION=4.2rc1
 
 TARGET_DIR=Plone-${VERSION}
 
 # build an installer package and dmg-ready directory
 # if possible.
-if [ -x /Developer/usr/bin/packagemaker ]; then    
+if [ -x /Developer/usr/bin/packagemaker ]; then
 
   echo "Preparing package"
 
@@ -35,7 +35,7 @@ if [ -x /Developer/usr/bin/packagemaker ]; then
     git clone git://github.com/plone/Plone.git
     cd ..
   fi
-  
+
   echo 'Moving to right tag'
   cd baseResources/Plone
   git checkout ${VERSION}
@@ -44,7 +44,7 @@ if [ -x /Developer/usr/bin/packagemaker ]; then
 
   echo 'Prepare docs'
   if [ ! -d $TARGET_DIR/Plone-docs ]
-  then  
+  then
     mkdir -p $TARGET_DIR/Plone-docs
   fi
   cp -R baseResources/Plone/docs/* $TARGET_DIR/Plone-docs/

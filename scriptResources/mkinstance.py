@@ -11,7 +11,7 @@ Created by Steve McMahon on 2008-06-29.
 Copyright (c) 2008, Plone Foundation.
 """
 
-MY_PYTHON = 'Python-2.6'
+MY_PYTHON = 'Python-2.7'
 
 STANDALONE_NAME = 'zinstance'
 ZEO_NAME = 'zeocluster'
@@ -148,7 +148,7 @@ class InstallApp(guageApp.GuageApp):
         print "Running install.sh from %s" % os.getcwd()
 
         command = """./install.sh %s \
-            --skip-tool-tests --libjpeg=no --libz=no \
+            --skip-tool-tests --libjpeg=no \
             --target="%s" \
             --log=%s \
             --password=%s \

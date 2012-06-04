@@ -8,7 +8,7 @@
 
 # specify version below; it should match the name of
 # the Unified Installer.
-VERSION=4.1.4
+VERSION=4.1.5
 
 # override if you want to create the output folder somewhere else
 TARGET_DIR=Plone-${VERSION}

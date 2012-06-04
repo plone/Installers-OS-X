@@ -6,7 +6,7 @@
 
 # specify version below; it should match the name of
 # the Unified Installer.
-VERSION=4.1.4
+VERSION=4.1.5
 
 TARGET_DIR=Plone-${VERSION}
 

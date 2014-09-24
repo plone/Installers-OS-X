@@ -23,5 +23,9 @@ if result = {button returned:"Yes"} then
     end tell
 else
     --If no
-    display dialog "Go and install vagrant"
+    display dialog "The installer script is canceled!
+    You can re-run it anytime, just by clicking on the Plone Logo again.
+    If for some reason this installer is not fitting your needs, please have a look
+    at https://plone.org/download - we also offer Vagrant Images, Docker Containers, Ansible Playbooks
+    and much more !" with icon alias ((path to me) & "Contents:Resources:plone.icns" as string) buttons {"Cancel", "OK"} default button 2
 end if

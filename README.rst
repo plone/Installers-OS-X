@@ -19,8 +19,8 @@ Features
 Dependencies
 ============
 
-- Apple XCode-Command-line-Tools
-- Homebrew
+- `Homebrew <http://brew.sh/>`_
+- `Apple XCode-Command-line-Tools <https://developer.apple.com/xcode/>`_
 
 
 Installation
@@ -35,8 +35,9 @@ Has to come
 
 Contribute
 ----------
+- Issue Tracker: https://github.com/plone/Installers-OS-X/issues
+- Source Code:  https://github.com/plone/Installers-OS-X
 
-Has to come
 
 License
 -------

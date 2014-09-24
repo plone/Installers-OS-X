@@ -1,0 +1,2 @@
+display dialog "test" with title "title" default button 2 with icon file "Macintosh HD:Users:svx:Projects:test:plone.icns"
+

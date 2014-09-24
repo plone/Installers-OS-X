@@ -1,5 +1,8 @@
 --OSX INstaller for Plone
 
+display dialog "Welcome to the Plone Installer for OSX.
+For any help please check https://plone.org/help" with icon alias ((path to me) & "Contents:Resources:plone.icns" as string) buttons {"Cancel", "OK"} default button 2
+
 --Welcome Txt
 display dialog "Welcome to the Installer for Plone on OSX
 For any help please check the documentation on docs.plone.org

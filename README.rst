@@ -10,7 +10,6 @@ This Installer will install Plone and all its dependencies on OSX.
 
 Features
 ========
-
 - will check and install dependencies
 - will install Plone
 - comes with a uninstaller
@@ -18,19 +17,16 @@ Features
 
 Dependencies
 ============
-
 - `Homebrew <http://brew.sh/>`_
 - `Apple XCode-Command-line-Tools <https://developer.apple.com/xcode/>`_
 
 
 Installation
 ============
-
 Download the installer and double-click on the Plone logo
 
 Uninstall
 =========
-
 Has to come
 
 Contribute
@@ -41,7 +37,6 @@ Contribute
 
 License
 -------
-
 GPLv2
 
 

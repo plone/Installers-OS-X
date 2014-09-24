@@ -6,4 +6,6 @@ work-build
 *.mpkg
 *.pkg
 ._*
-baseResources/binaries.tar.bz2
+install.log
+config.log
+Plone-docs

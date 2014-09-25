@@ -3,7 +3,7 @@
 # Dependencies: osacompile
 
 # Declare some VARS
-APP_NAME="PloneOSX1.app"
+APP_NAME="PloneOSX-WIP.app"
 SOURCE_SCRIPT="install.plone.applescript"
 
 # Create the dir structure

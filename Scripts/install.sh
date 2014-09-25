@@ -36,8 +36,10 @@ e_note() { printf "${underline}${bold}${blue}Note:${reset}  ${blue}%s${reset}\n"
 
 # Check if Homebrew is installed
 e_header "Check if Homebrew is installed"
-which -s brew
-if [[ $? != 0 ]] ; then
+if ! program_exists "brew"; then
+
+#which -s brew
+#if [[ $? != 0 ]] ; then
 #Install Homebrew
 # https://github.com/mxcl/homebrew/wiki/installation
    e_header "Installing Homebrew"

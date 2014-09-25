@@ -1,0 +1,2 @@
+DOWNLOAD_URL="https://launchpad.net/plone/4.3/4.3.3/+download/Plone-4.3.3-UnifiedInstaller.tgz"
+UI_VERSION="Plone-4.3.3-UnifiedInstaller"

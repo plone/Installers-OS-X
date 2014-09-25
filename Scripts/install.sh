@@ -36,17 +36,17 @@ e_note() { printf "${underline}${bold}${blue}Note:${reset}  ${blue}%s${reset}\n"
 
 # Check if Homebrew is installed
 e_header "Check if Homebrew is installed"
-#which -s brew
-#if [[ $? != 0 ]] ; then
-# Install Homebrew
+which -s brew
+if [[ $? != 0 ]] ; then
+#Install Homebrew
 # https://github.com/mxcl/homebrew/wiki/installation
-#   e_header "Installing Homebrew"
-#   /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
-#   brew doctor
-#else
-#   e_header "Updating Homebrew"
-#   brew update
-#fi
+   e_header "Installing Homebrew"
+   /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+   brew doctor
+else
+   e_header "Updating Homebrew"
+   brew update
+fi
 
 # Let us check if we have already some dependencies installed:
 e_header "Check Homebrew Packages"
@@ -70,7 +70,7 @@ fi
 
 # Install the Python version we want
 e_header "Installing proper Python version with openssl support"
-#brew install python --brewed-with-openssl
+brew install python --brewed-with-openssl
 
 # Downloading Plone
 #e_header "Downloading Plone"

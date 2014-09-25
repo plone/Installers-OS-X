@@ -34,6 +34,16 @@ e_bold() { printf "${bold}%s${reset}\n" "$@"
 e_note() { printf "${underline}${bold}${blue}Note:${reset}  ${blue}%s${reset}\n" "$@"
 }
 
+# Check if XCode CommandLine Tools are installed
+e_header "Check if XCode-Tools are installed"
+if [ ! -d "/Library/Developer/CommandLineTools/" ]; then
+    e_header "Installing XCode Tools"
+    xcode-select --install
+else
+# We do nothing and just move on
+    .
+fi
+
 # Check if Homebrew is installed
 e_header "Check if Homebrew is installed"
 if ! program_exists "brew"; then

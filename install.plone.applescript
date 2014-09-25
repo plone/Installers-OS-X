@@ -17,7 +17,7 @@ Do you want to install Plone ?" buttons {"Yes", "No"} default button 1
 --If yes
 if result = {button returned:"Yes"} then
     tell application "Terminal"
-        do shell script "bash " & POSIX path of (path to me) & "/Contents/Resources/Scripts/foobar.sh"
+        do shell script "bash " & POSIX path of (path to me) & "/Contents/Resources/Scripts/install.sh"
         --set bashFile to path to resource "foobar.sh"
         --do script "foobar.sh" & quoted form of (POSIX path of bashFile) in shell
     end tell

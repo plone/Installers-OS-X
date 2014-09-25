@@ -99,6 +99,9 @@ brew install python --brewed-with-openssl
 e_header "Downloading Plone"
 wget --no-check-certificate https://launchpad.net/plone/4.3/4.3.3/+download/Plone-4.3.3-UnifiedInstaller.tgz
 
+# Unpacking Plone
+tar -xf Plone-4.3.3-UnifiedInstaller.tgz
+
 # Installing Plone
 e_header "Installing ... this can take some time"
 cd Plone-4.3.3-UnifiedInstaller && ./install.sh standalone

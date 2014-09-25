@@ -73,11 +73,12 @@ e_header "Installing proper Python version with openssl support"
 brew install python --brewed-with-openssl
 
 # Downloading Plone
-#e_header "Downloading Plone"
+e_header "Downloading Plone"
+wget --no-check-certificate https://launchpad.net/plone/4.3/4.3.3/+download/Plone-4.3.3-UnifiedInstaller.tgz
 
-# Unpacking Plone
-
-# Prompt to install.sh
+# Installing Plone
+e_header "Installing ... this can take some time"
+cd Plone-4.3.3-UnifiedInstaller && ./install.sh standalone
 
 # Watch the output
 

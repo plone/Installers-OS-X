@@ -56,6 +56,7 @@ function to_install() {
     echo "$v ($(eval echo "\${#$v[*]}")) $(eval echo "\${$v[*]}")"
   done
   echo "${remain[@]}"
+}
 
 # Check if XCode CommandLine Tools are installed
 e_header "Check if XCode-Tools are installed"

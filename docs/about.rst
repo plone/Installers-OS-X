@@ -18,4 +18,12 @@ If permissions are not granted the script will stop with a warning message and w
 The directory structure should setup in the way that it is 'OK' with the typical structure for Apple Bundles, so that we can build the bundle later from
 command line [jenkins?]
 
-We should always keep the description and version files up to date, meaning update them with every release of Plone.
+Building
+========
+
+If you want to build a new release, you need to addjust Scripts/install.sh with the right version numbers and download links, further you have to change the name in the build script [create_bundle.sh].
+In a later stage we should change that to have this settings as variables in the build script.
+
+If these changes are done, just run: ./create_bundle.sh and you will get the Installer.app.
+
+

@@ -98,7 +98,8 @@ list="$(to_install "${recipes[*]}" "$(brew list)")"
 if [[ "$list" ]]; then
 for item in ${list[@]}
   do
-    echo "$item is not on the list"
+    #echo "$item is not on the list"
+    brew install "$item"
   done
 else
 e_arrow "Nothing to install.  You've already got them all."

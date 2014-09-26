@@ -102,7 +102,7 @@ for item in ${list[@]}
     brew install "$item"
   done
 else
-e_arrow "Nothing to install.  You've already got them all."
+e_success "Nothing to install.  You've already got them all."
 fi
 
 # Install the Python version we want
@@ -114,7 +114,7 @@ e_header "Downloading Plone"
 wget --no-check-certificate https://launchpad.net/plone/4.3/4.3.3/+download/Plone-4.3.3-UnifiedInstaller.tgz
 
 # Unpacking Plone
-tar -xf ${UI_VERSION}.tgz
+tar -xf Plone-4.3.3-UnifiedInstaller.tgz
 
 # Installing Plone
 e_header "Installing ... this can take some time"

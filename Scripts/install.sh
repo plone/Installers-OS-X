@@ -102,7 +102,7 @@ for item in ${list[@]}
     brew install "$item"
   done
 else
-e_success "Nothing to install.  You've already got them all."
+e_success "Nothing to install. You've already got them all."
 fi
 
 # Install the Python version we want

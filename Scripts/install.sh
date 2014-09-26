@@ -34,6 +34,29 @@ e_bold() { printf "${bold}%s${reset}\n" "$@"
 e_note() { printf "${underline}${bold}${blue}Note:${reset}  ${blue}%s${reset}\n" "$@"
 }
 
+# Install
+function to_install() {
+  local debug desired installed i desired_s installed_s remain
+  if [[ "$1" == 1 ]]; then debug=1; shift; fi
+    # Convert args to arrays, handling both space- and newline-separated lists.
+    read -ra desired < <(echo "$1" | tr '\n' ' ')
+    read -ra installed < <(echo "$2" | tr '\n' ' ')
+    # Sort desired and installed arrays.
+    unset i; while read -r; do desired_s[i++]=$REPLY; done < <(
+      printf "%s\n" "${desired[@]}" | sort
+    )
+    unset i; while read -r; do installed_s[i++]=$REPLY; done < <(
+      printf "%s\n" "${installed[@]}" | sort
+    )
+    # Get the difference. comm is awesome.
+    unset i; while read -r; do remain[i++]=$REPLY; done < <(
+      comm -13 <(printf "%s\n" "${installed_s[@]}") <(printf "%s\n" "${desired_s[@]}")
+  )
+  [[ "$debug" ]] && for v in desired desired_s installed installed_s remain; do
+    echo "$v ($(eval echo "\${#$v[*]}")) $(eval echo "\${$v[*]}")"
+  done
+  echo "${remain[@]}"
+
 # Check if XCode CommandLine Tools are installed
 e_header "Check if XCode-Tools are installed"
 if [ ! -d "/Library/Developer/CommandLineTools/" ]; then
@@ -46,11 +69,10 @@ fi
 
 # Check if Homebrew is installed
 e_header "Check if Homebrew is installed"
-if ! program_exists "brew"; then
 
-#which -s brew
-#if [[ $? != 0 ]] ; then
-#Install Homebrew
+which -s brew
+if [[ $? != 0 ]] ; then
+Install Homebrew
 # https://github.com/mxcl/homebrew/wiki/installation
    e_header "Installing Homebrew"
    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -63,43 +85,22 @@ fi
 # Let us check if we have already some dependencies installed:
 e_header "Check Homebrew Packages"
 
-# Install Homebrew Recipes
-if program_exists "brew"; then
-  recipes=(
-    ack
-    openssl
-    git
-    git-extras
-    readline
-    dialog
-    tree
-    watch
-    wget
-    )
-
-  list="$(to_install "${recipes[*]}" "$(brew list)")"
-  if [[ "$list" ]]; then
-    notice "Installing Homebrew Recipes: ${list[*]}"
-    brew install $list
-  fi
+recipes=(
+  openssl
+  readline
+  wget
+  dialog
+  git
+)
+list="$(to_install "${recipes[*]}" "$(brew list)")"
+if [[ "$list" ]]; then
+for item in ${list[@]}
+  do
+    echo "$item is not on the list"
+  done
+else
+e_arrow "Nothing to install.  You've already got them all."
 fi
-
-#recipes=(
-#  openssl
-#  readline
-#  wget
-#  dialog
-#  git
-#)
-#list="$(to_install "${recipes[*]}" "$(brew list)")"
-#if [[ "$list" ]]; then
-#for item in ${list[@]}
-#  do
-#    echo "$item is not on the list"
-#  done
-#else
-#e_arrow "Nothing to install.  You've already got them all."
-#fi
 
 # Install the Python version we want
 e_header "Installing proper Python version with openssl support"
@@ -110,7 +111,7 @@ e_header "Downloading Plone"
 wget --no-check-certificate https://launchpad.net/plone/4.3/4.3.3/+download/Plone-4.3.3-UnifiedInstaller.tgz
 
 # Unpacking Plone
-tar -xf Plone-4.3.3-UnifiedInstaller.tgz
+tar -xf ${UI_VERSION}.tgz
 
 # Installing Plone
 e_header "Installing ... this can take some time"

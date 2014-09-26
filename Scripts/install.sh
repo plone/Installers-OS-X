@@ -59,15 +59,15 @@ function to_install() {
 }
 
 # Check if XCode CommandLine Tools are installed
-e_header "Check if XCode-Tools are installed"
-if [ ! -d "/Library/Developer/CommandLineTools/" ]; then
-    e_header "Installing XCode Tools"
-    xcode-select --install
-else
+#e_header "Check if XCode-Tools are installed"
+#if [ ! -d "/Library/Developer/CommandLineTools/" ]; then
+#    e_header "Installing XCode Tools"
+#    xcode-select --install
+#else
 # We do nothing and just move on
-    e_success "Looks good we are moving on"
-    :
-fi
+#    e_success "Looks good we are moving on"
+#    :
+#fi
 
 # Check if Homebrew is installed
 e_header "Check if Homebrew is installed"

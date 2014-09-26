@@ -65,7 +65,8 @@ if [ ! -d "/Library/Developer/CommandLineTools/" ]; then
     xcode-select --install
 else
 # We do nothing and just move on
-    .
+    e_success "Looks good we are moving on"
+    :
 fi
 
 # Check if Homebrew is installed

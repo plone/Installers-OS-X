@@ -16,6 +16,13 @@ Do you want to install Plone ?" buttons {"Yes", "No"} default button 1
 
 --If yes
 if result = {button returned:"Yes"} then
+    --test for xcode
+    tell application "Finder"
+        if not (exists file ("/Library/Developer/CommandLineTools/") as POSIX file) then
+            do do shell script "xcode-select --install"
+        end if
+    end tell
+    --end test
     tell application "Terminal"
         activate
         do script "bash " & POSIX path of (path to me) & "/Contents/Resources/Scripts/install.sh" in window 1

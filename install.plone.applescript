@@ -22,6 +22,7 @@ if result = {button returned:"Yes"} then
 			repeat while not (exists file ("/Library/Developer/CommandLineTools/") as POSIX file)
 				delay 0.5
 			end repeat
+            delay 20
 		end if
 	end tell
 	--end test

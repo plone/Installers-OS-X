@@ -1,10 +1,9 @@
 --OSX Installer for Plone
 
 display dialog "Welcome to the Plone Installer for OSX.
-For any help please check https://plone.org/help" with icon alias ((path to me) & "Contents:Resources:plone.icns" as string) buttons {"Cancel", "OK"} default button 2
+For any help please check https://plone.org/help
 
---Info Txt
-display dialog "The installer relies on homebrew and
+The installer relies on homebrew and
 Xcode to install all needed requirements
 If you click Yes the installer will try to figure out what needs to be installed.
 
@@ -12,7 +11,7 @@ In order to do so it will also ask for your sudo passowrd.
 
 If you don't agree please click on No, that will stop this programm
 without installing anything on your computer.
-Do you want to install Plone ?" buttons {"Yes", "No"} default button 1
+Do you want to install Plone ?" with icon alias ((path to me) & "Contents:Resources:plone.icns" as string) buttons {"Yes", "No"} default button 1
 
 --If yes
 if result = {button returned:"Yes"} then
